@@ -2,7 +2,7 @@
 data/
 
 # Ipython stuff
-.ipynb_checkpoint
+.ipynb_checkpoints/
 
 # Python stuff
 *.pyc
