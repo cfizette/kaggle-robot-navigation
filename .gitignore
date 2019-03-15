@@ -1,0 +1,8 @@
+# Data
+data/
+
+# Ipython stuff
+.ipynb_checkpoint
+
+# Python stuff
+*.pyc
