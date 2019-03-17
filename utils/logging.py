@@ -1,12 +1,13 @@
 import sys
 import logging
+from uuid import uuid4
 
-def setup_logger(logfile, console_out=False):
+def setup_logger(logfile, console_out=False, name=str(uuid4())):
     # Create file if does not exist
     with open(logfile, 'a') as f:
         pass
 
-    logger = logging.getLogger()
+    logger = logging.getLogger(name)
     logger.setLevel('INFO')
 
     filehandler = logging.FileHandler(logfile)

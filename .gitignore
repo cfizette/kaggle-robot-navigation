@@ -1,8 +1,15 @@
 # Data
 data/
+*.csv
 
 # Ipython stuff
 .ipynb_checkpoints/
 
 # Python stuff
 *.pyc
+
+# Logging
+*.log
+
+# Model checkpoitns
+*.pt

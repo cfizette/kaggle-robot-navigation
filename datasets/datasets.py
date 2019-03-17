@@ -31,15 +31,15 @@ class RobotNavDataset(Dataset):
     # TODO add transformations here
     def __init__(self, path_dir, normalize=True):
         self.normalize = normalize
+        self.label_encoder = LabelEncoder()
         #self.train, self.labels, self.test = self.load_and_format_data(path_dir)
         self.data, self.labels = self.load_and_format_data(path_dir)
-        self.label_encoder = LabelEncoder()
         
     def __len__(self):
         return len(self.labels)
         
     def __getitem__(self, index):
-        X = self.train[index]
+        X = self.data[index]
         y = self.labels[index]
         return X, y
         
@@ -69,8 +69,10 @@ class RobotNavDataset(Dataset):
 
         return x_train.view((n,1,10,128)), y_train 
 
-def SubmissionDataset(Dataset):
+
+class SubmissionDataset(Dataset):
     def __init__(self, path_dir, normalize=True):
+        self.normalize = normalize
         self.data = self.load_and_format_data(path_dir)
 
     def __len__(self):
@@ -82,8 +84,9 @@ def SubmissionDataset(Dataset):
 
     def load_and_format_data(self, path):
         x_test = pd.read_csv(join(path,X_TEST))      
-        n = len(x_test)
-        x_test = x_to_array(x_test)  
+        x_test = x_to_array(x_test)
+        n = len(x_test)  
+        
         # Normalize each channel
         if self.normalize:
             scale_trans = partial(scale, axis=1)
